@@ -99,6 +99,13 @@
 
         // Score text
         scoreText = this.add.text(16, 16, 'Star points: 0', {fontSize: '32px', fill: '#000'});
+
+        // "Add star" button
+        let addStar = this.add.text(500, 100, 'Add star', {fontSize: '32px', fill: '#000'});
+        addStar.setInteractive();
+        addStar.on('pointerdown', function() {
+            // TODO: Add a star
+        });
     }
 
     function update () {
