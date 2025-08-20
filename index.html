@@ -49,6 +49,8 @@
     let score = 0;
     let scoreText;
 
+    let addStar;
+
     function create () {
         this.add.image(400, 300, 'sky'); // Background
 
@@ -101,11 +103,9 @@
         scoreText = this.add.text(16, 16, 'Star points: 0', {fontSize: '32px', fill: '#000'});
 
         // "Add star" button
-        let addStar = this.add.text(500, 100, 'Add star', {fontSize: '32px', fill: '#000'});
+        addStar = this.add.text(500, 100, 'Add star\n(100 points)', {fontSize: '32px', fill: '#000'});
         addStar.setInteractive();
-        addStar.on('pointerdown', function() {
-            // TODO: Add a star
-        });
+        addStar.visible = false;
     }
 
     function update () {
@@ -126,6 +126,25 @@
                 child.setBounce(Math.random());
             }
         });
+
+        if (score >= 100) {
+            addStar.visible = true;
+            addStar.on('pointerdown', function() {
+                if (score < 100) return; // Avoid bounce back
+                let star = stars.create(800, 0, 'star');
+
+                star.x = 800;
+                star.y = star.y - Math.random() * 600;
+                star.setVelocityX(-(Math.random() + 0.5) * 200);
+                star.setBounce(Math.random());
+
+                score -= 100;
+                scoreText.setText('Star points: ' + score);
+            });
+        } else {
+            addStar.visible = false;
+            addStar.off('pointerdown');
+        }
     }
 
 </script>
