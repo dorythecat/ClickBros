@@ -44,9 +44,7 @@
         );
     }
 
-    let platforms;
-    let player;
-    let stars;
+    let platforms, stars, player;
 
     let score = 0;
     let scoreText;
@@ -68,7 +66,7 @@
         this.anims.create({
             key: 'right',
             frames: this.anims.generateFrameNumbers('dude', { start: 5, end: 8 }),
-            frameRate: 10,
+            frameRate: 5,
             repeat: -1
         });
 
