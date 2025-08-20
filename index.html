@@ -92,13 +92,13 @@
             star.setBounce(Math.random());
 
             score += 10;
-            scoreText.setText('Score: ' + score);
+            scoreText.setText('Star points: ' + score);
         }
 
         this.physics.add.overlap(player, stars, collectStar, null, this);
 
         // Score text
-        scoreText = this.add.text(16, 16, 'score: 0', {fontSize: '32px', fill: '#000'});
+        scoreText = this.add.text(16, 16, 'Star points: 0', {fontSize: '32px', fill: '#000'});
     }
 
     function update () {
