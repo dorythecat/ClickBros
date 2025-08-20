@@ -40,7 +40,7 @@
         this.load.image('bomb', 'assets/bomb.png');
         this.load.spritesheet('dude',
             'assets/dude.png',
-            { frameWidth: 32, frameHeight: 48 }
+            { frameWidth: 28, frameHeight: 35 }
         );
     }
 
@@ -59,13 +59,11 @@
 
         // Player
         player = this.physics.add.sprite(100, 500, 'dude');
-
-        player.setBounce(0.2);
         player.setCollideWorldBounds(true);
 
         this.anims.create({
             key: 'right',
-            frames: this.anims.generateFrameNumbers('dude', { start: 5, end: 8 }),
+            frames: this.anims.generateFrameNumbers('dude', { start: 1, end: 4 }),
             frameRate: 5,
             repeat: -1
         });
