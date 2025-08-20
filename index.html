@@ -73,17 +73,23 @@
         // Stars
         stars = this.physics.add.group({
             key: 'star',
-            repeat: 11,
+            repeat: 4,
             setXY: { x: 0, y: 520, stepX: 200 }
         });
 
         // Make stars scroll to the left
-        stars.children.iterate(function (child) { child.setVelocityX(-100); });
+        stars.children.iterate(function (child) {
+            child.setVelocityX(-(Math.random() + 0.5) * 100);
+            child.setBounce(Math.random());
+        });
 
         this.physics.add.collider(stars, platforms);
 
         function collectStar(player, star) {
-            star.disableBody(true, true);
+            star.x = 800;
+            star.y = star.y - Math.random() * 600;
+            star.setVelocityX(-(Math.random() + 0.5) * 200);
+            star.setBounce(Math.random());
 
             score += 10;
             scoreText.setText('Score: ' + score);
@@ -104,6 +110,15 @@
         });
 
         this.input.on('pointerup', function() { player.setVelocityY(0); });
+
+        stars.children.iterate(function (child) {
+            if (child.x <= 0) {
+                child.x = 800;
+                child.y = child.y - Math.random() * 600;
+                child.setVelocityX(-(Math.random() + 0.5) * 200);
+                child.setBounce(Math.random());
+            }
+        });
     }
 
 </script>
