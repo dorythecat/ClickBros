@@ -105,11 +105,10 @@
 
         player.anims.play('right', true);
 
-        if (cursors.up.isDown && player.body.touching.down) {
-            player.setVelocityY(-300);
-        } else if (!cursors.up.isDown) {
-            player.setVelocityY(150);
-        }
+        this.input.on('pointerdown', function() {
+            if (!player.body.touching.down) return;
+            player.setVelocityY(-400);
+        });
     }
 
 </script>
