@@ -1,4 +1,4 @@
-# Click Bros
+# Star Clicker
 A silly little game about clicking and collecting stars.
 
 # Credits
