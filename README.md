@@ -1,5 +1,5 @@
 # Click Bros
-A silly little game about clicking and jumping.
+A silly little game about clicking and collecting stars.
 
 # Credits
 All the assets used, except for the music and protagonist, come from the PhaserJS
