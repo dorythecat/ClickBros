@@ -46,10 +46,10 @@
 
     let platforms, stars, player;
 
-    let score = 0;
+    let score = 0, starValue = 10;
     let scoreText;
 
-    let addStar;
+    let addStar, makeBigger, improveStarValue;
 
     let music
 
@@ -95,7 +95,7 @@
             star.setVelocityX(-(Math.random() + 0.5) * 200);
             star.setBounce(Math.random());
 
-            score += 10;
+            score += starValue;
             scoreText.setText('Star points: ' + score);
         }
 
@@ -105,9 +105,19 @@
         scoreText = this.add.text(16, 16, 'Star points: 0', {fontSize: '32px', fill: '#000'});
 
         // "Add star" button
-        addStar = this.add.text(500, 100, 'Add stars\n(100 points each)', {fontSize: '32px', fill: '#000'});
+        addStar = this.add.text(400, 100, 'Add stars\n(100 points each)', {fontSize: '32px', fill: '#000'});
         addStar.setInteractive();
         addStar.visible = false;
+
+        // "Make bigger" button
+        makeBigger = this.add.text(400, 250, 'Make player bigger\n (1000 points)', {fontSize: '32px', fill: '#000'});
+        makeBigger.setInteractive();
+        makeBigger.visible = false;
+
+        // "Improve star value" button
+        improveStarValue = this.add.text(400, 400, 'Double star value\n (10000 points)', {fontSize: '32px', fill: '#000'});
+        improveStarValue.setInteractive();
+        improveStarValue.visible = false;
 
         // Music
         music = this.sound.add('music');
@@ -134,6 +144,7 @@
             }
         });
 
+        // "Add star" button logic
         if (score >= 100) {
             addStar.visible = true;
             addStar.on('pointerdown', function() {
@@ -151,6 +162,34 @@
         } else {
             addStar.visible = false;
             addStar.off('pointerdown');
+        }
+
+        // "Make bigger" button logic
+        if (score >= 1000) {
+            makeBigger.visible = true;
+            makeBigger.on('pointerdown', function() {
+                if (score < 1000) return; // Avoid bounce back
+                player.setScale(player.scaleX * 1.2, player.scaleY * 1.2);
+                score -= 1000;
+                scoreText.setText('Star points: ' + score);
+            });
+        } else {
+            makeBigger.visible = false;
+            makeBigger.off('pointerdown');
+        }
+
+        // "Improve star value" button logic
+        if (score >= 10000) {
+            improveStarValue.visible = true;
+            improveStarValue.on('pointerdown', function() {
+                if (score < 10000) return; // Avoid bounce back
+                starValue *= 2;
+                score -= 10000;
+                scoreText.setText('Star points: ' + score);
+            });
+        } else {
+            improveStarValue.visible = false;
+            improveStarValue.off('pointerdown');
         }
     }
 
