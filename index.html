@@ -2,7 +2,7 @@
 <html lang="en"> 
 <head> 
     <meta charset="UTF-8" />
-    <title>Star Clicker</title>
+    <title>Making your first Phaser 3 Game - Part 1</title>
     <script src="https://cdn.jsdelivr.net/npm/phaser@3.11.0/dist/phaser.js"></script>
     <style>
         body {
@@ -12,21 +12,7 @@
 </head>
 <body>
 
-<!-- Background music -->
-<audio loop autoplay src="assets/music.wav"></audio>
-
 <script type="text/javascript">
-    // Background music loop workaround for some browsers
-    let music = new Audio();
-    music.src = 'assets/music.wav"';
-    function AudioLoop() {
-        music.play();
-        if (music.paused === true) music.play();
-    }
-    window.onload = setInterval(AudioLoop, 1000);
-    music.addEventListener('ended', () => music.play());
-
-
     const config = {
         type: Phaser.AUTO,
         width: 800,
@@ -64,6 +50,8 @@
     let scoreText;
 
     let addStar, makeBigger, improveStarValue;
+
+    let music
 
     function create () {
         this.add.image(400, 300, 'sky'); // Background
@@ -130,6 +118,11 @@
         improveStarValue = this.add.text(400, 400, 'Double star value\n (1000 points)', {fontSize: '32px', fill: '#000'});
         improveStarValue.setInteractive();
         improveStarValue.visible = false;
+
+        // Music
+        music = this.sound.add('music');
+        music.setLoop(true);
+        music.play();
     }
 
     function update () {
